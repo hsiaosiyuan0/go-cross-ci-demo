@@ -6,15 +6,10 @@ on:
       - "*"
 
 jobs:
-  xgo:
+  release:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup node@16
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - name: Checkout plugin
+      - name: Checkout plugin source
         uses: actions/checkout@v3
 
       - name: Build plugin
@@ -27,6 +22,11 @@ jobs:
           targets: linux/amd64,linux/arm64,darwin/arm64,darwin/amd64
           v: true
           buildmode: plugin
+
+      - name: Setup node@16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
       - name: Publish to npm
         uses: JS-DevTools/npm-publish@v1
