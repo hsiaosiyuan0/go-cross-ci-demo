@@ -21,3 +21,8 @@ Follow below steps to trigger a new release action:
 2. Create new release on the releases page:
 
   ![](https://p5.music.126.net/obj/wo3DlcOGw6DClTvDisK1/14904788539/33d2/37ac/790a/f9b44c6714259208a2964d869b822c95.png)
+
+
+  ![](https://p5.music.126.net/obj/wo3DlcOGw6DClTvDisK1/14904909779/212c/d518/5ff9/aec6a495b34c5f59c860712a6c25ae48.png)
+
+3. After the "Publish release" button is clicked, the release processed defined in the `release.yml` mentioned above will run automatically
