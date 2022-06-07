@@ -1,10 +1,9 @@
 name: Build Release
 
 on:
-  push:
-    tags:
-    - '*'
-
+  release:
+    types: [published]
+    
 jobs:
   xgo:
     runs-on: ubuntu-latest
