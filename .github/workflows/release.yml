@@ -3,17 +3,20 @@ name: Build Release
 on:
   push:
     tags:
-    - '*'
+      - "*"
 
 jobs:
   xgo:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Checkout
         uses: actions/checkout@v3
-      -
-        name: Build
+
+      - name: Build
         uses: crazy-max/ghaction-xgo@v2
         with:
           xgo_version: latest
@@ -23,10 +26,6 @@ jobs:
           targets: windows/amd64,linux/amd64,linux/arm64,darwin/arm64,darwin/amd64
           v: true
           buildmode: plugin
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
 
       - uses: JS-DevTools/npm-publish@v1
         with:
