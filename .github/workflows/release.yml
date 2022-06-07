@@ -20,3 +20,8 @@ jobs:
           targets: windows/amd64,linux/amd64,linux/arm64,darwin/arm64
           v: true
           buildmode: plugin
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/*"
+          token: ${{ secrets.GITHUB_TOKEN }}
