@@ -9,29 +9,32 @@ jobs:
   xgo:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v3
+      - name: Setup node@16
+        uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: Checkout
+      - name: Checkout plugin
         uses: actions/checkout@v3
 
-      - name: Build
+      - name: Build plugin
         uses: crazy-max/ghaction-xgo@v2
         with:
           xgo_version: latest
           go_version: 1.18
           dest: build
-          prefix: myapp
-          targets: windows/amd64,linux/amd64,linux/arm64,darwin/arm64,darwin/amd64
+          prefix: ${{ github.event.repository.name }}
+          targets: linux/amd64,linux/arm64,darwin/arm64,darwin/amd64
           v: true
           buildmode: plugin
 
-      - uses: JS-DevTools/npm-publish@v1
+      - name: Publish to npm
+        uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
 
-      - uses: ncipollo/release-action@v1
+      - name: Release
+        uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
           artifacts: "build/*"
